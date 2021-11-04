@@ -40,7 +40,12 @@ export default class App extends Component {
             this.state.interestRate,
             this.state.loanTerm,
             this.state.period)
-        let monthlyPayment = mortgage.monthlyPayment()
+        let monthlyPayment = mortgage.monthlyPayment(
+            this.state.principal,
+            this.state.interestRate,
+            this.state.loanTerm,
+            this.state.period)
+        console.log(mortgage.monthlyPayment());
         let monthly = document.getElementById('output')
         monthly.innerText = "$" + monthlyPayment
     }

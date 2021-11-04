@@ -57,19 +57,34 @@ describe('End to End Tests', () => {
       });
     });
 
+	it('should correctly calculate mortgage', () =>
+		pageObject
+		.wait()
+		.type('input[name=principal]', 300000)
+		.type('input[name=interestRate]', 3.75)
+		.type('input[name=loanTerm]', 30)
+		.select('select[name=period]', 12)
+		.click('button#calculate')
+		.wait('#output')
+		.evaluate(() => document.querySelector('#output').innerText)
+		.then((outputText) => {
+			expect(outputText).to.equal('$1389.35');
+		})
+	).timeout(6500);
+
 	it('should calculate monthly mortgage payment correctly and display it in "output" <p>', () => {
 		return pageObject
-		.type('#prinicpal',300000)
-		.type('#interestRate',4.5)
-		.type('#loanTerm',30)
-		.select('#period','12')
+		.wait()
+		.type('#principal', 300000)
+		.type('#interestRate', 4.5)
+		.type('#loanTerm', 30)
+		.select('#period', 12)
 		.click('#calculate')
-		.wait('#output a.result__a')
-		.evaluate(() => document.querySelector('#output a.result__a').href)
-		.end()
-		.then(console.log)
-		.catch(error => {
-			console.error('Search failed:', error)
-		});
-	});
-})
+		.wait('#output')
+		.evaluate(() => document.querySelector('#output').innerText)
+		.then((result) => {
+			expect(result).to.equal('$1520.06')
+		})
+	}).timeout(6500);
+		
+});
