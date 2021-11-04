@@ -1,4 +1,4 @@
-var chai = require('chai'), expect = chai.expect, should = chai.should();
+var chai = require('chai'), expect = chai.expect, should = chai.should(), assert =chai.assert;
 const Mortgage = require('../../src/js/lib/Mortgage');
 
 describe ('Mortgage', () => {
@@ -17,11 +17,17 @@ describe ('Mortgage', () => {
   });
 
   it('should calculate mortgage Payment correctly', () => {
-  expect(mortgage.monthlyPayment(400000, 7.5, 30, 12)).to.equal(2796.86);
+    expect(mortgage.monthlyPayment(400000, 7.5, 30, 12)).to.equal(2796.86);
   });
 
   it('monthly payment should be a number', () => {
-  mortgage.monthlyPayment(300000, 4.5, 30, 12).should.be.a('number');
+    mortgage.monthlyPayment(300000, 4.5, 30, 12).should.be.a('number');
   });
+
+  it('should return a positive value', () => {
+    let result = mortgage.monthlyPayment(400000, 7.5, 30, 12);
+    assert.isAbove(result, 0)
+    });
+  
 })
 
