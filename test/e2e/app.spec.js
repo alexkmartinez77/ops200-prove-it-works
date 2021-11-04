@@ -57,6 +57,42 @@ describe('End to End Tests', () => {
       });
     });
 
+  it('should contain an input named principal', () => { 
+    return pageObject
+      .evaluate(() => document.querySelector('input[name=principal]').id)
+      .then(output => {
+      expect(output).to.not.be.null;
+			expect(output).to.equal('principal');
+      });
+    });
+
+  it('should contain an input named interestRate', () => { 
+    return pageObject
+      .evaluate(() => document.querySelector('input[name=interestRate]').id)
+      .then(output => {
+      expect(output).to.not.be.null;
+			expect(output).to.equal('interestRate');
+      });
+    });
+
+  it('should contain an input named loanTerm', () => { 
+    return pageObject
+      .evaluate(() => document.querySelector('input[name=loanTerm]').id)
+      .then(output => {
+      expect(output).to.not.be.null;
+			expect(output).to.equal('loanTerm');
+      });
+    });
+
+  it('should contain an input named period', () => { 
+    return pageObject
+      .evaluate(() => document.querySelector('select[name=period]').id)
+      .then(output => {
+      expect(output).to.not.be.null;
+			expect(output).to.equal('period');
+      });
+    });
+
 	it('should correctly calculate mortgage', () =>
 		pageObject
 		.wait()
